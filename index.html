@@ -1,557 +1,303 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ULC — Universal Life Certificate</title>
-  <meta name="description" content="Advanced dashboard for Universal Life Certificate (ULC) — ONSNC Nexus Education Grid">
-  
-  <!-- External Libraries -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
-  
-  <!-- Local Files -->
-  <link rel="stylesheet" href="ucl-certificate.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal Life Certificate | ONSNC - UIENC</title>
+    <meta name="description" content="Universal Life Certificate - A lifetime credential tracking system for inclusive global education">
+    <link rel="stylesheet" href="ucl-certificate.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
-  <!-- Authentication Pages -->
-  <div id="auth-container">
-    <!-- Login Page -->
-    <div class="auth-container" id="login-page">
-      <div class="auth-card">
-        <div class="auth-header">
-          <div class="auth-logo">ULC</div>
-          <h1 class="auth-title">Welcome Back</h1>
-          <p class="auth-subtitle">Sign in to your Universal Life Certificate account</p>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <div class="logo-icon">ULC</div>
+                <div class="brand-text">
+                    <h1>Universal Life Certificate</h1>
+                    <p>ONSNC - Universal Inclusive Education Network</p>
+                </div>
+            </div>
+            <div class="nav-actions">
+                <button class="btn-secondary" id="loginBtn">Sign In</button>
+                <button class="btn-primary" id="registerBtn">Create ULC</button>
+            </div>
         </div>
-        
-        <button class="btn btn-google" id="google-signin">
-          <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-            <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/>
-            <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/>
-            <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/>
-            <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/>
-          </svg>
-          Continue with Google
-        </button>
-        
-        <div class="divider">
-          <span class="divider-text">or</span>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2 class="hero-title">Your Lifetime Credential System</h2>
+                <p class="hero-subtitle">Track, verify, and showcase your complete educational journey, skills, and achievements with blockchain-secured Universal Life Certificate</p>
+                <div class="hero-features">
+                    <div class="feature-badge">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                        </svg>
+                        <span>Blockchain Verified</span>
+                    </div>
+                    <div class="feature-badge">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                        <span>Privacy Protected</span>
+                    </div>
+                    <div class="feature-badge">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 6v6l4 2"></path>
+                        </svg>
+                        <span>Lifetime Access</span>
+                    </div>
+                </div>
+                <button class="btn-hero" id="getStartedBtn">Get Started Free</button>
+            </div>
+            <div class="hero-image">
+                <div class="certificate-preview">
+                    <div class="certificate-header">
+                        <div class="cert-logo">ULC</div>
+                        <div class="cert-id">ULC-2025-XXXXXX</div>
+                    </div>
+                    <div class="certificate-body">
+                        <div class="avatar-placeholder"></div>
+                        <div class="info-placeholder">
+                            <div class="line long"></div>
+                            <div class="line medium"></div>
+                            <div class="line short"></div>
+                        </div>
+                    </div>
+                    <div class="certificate-badges">
+                        <div class="badge-mini"></div>
+                        <div class="badge-mini"></div>
+                        <div class="badge-mini"></div>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <div class="auth-form">
-          <div class="form-group">
-            <label class="form-label" for="login-email">Email or Mobile Number</label>
-            <input class="form-input" id="login-email" type="text" placeholder="Enter your email or mobile number" />
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label" for="login-password">Password</label>
-            <input class="form-input" id="login-password" type="password" placeholder="Enter your password" />
-          </div>
-          
-          <button class="btn btn-primary" id="login-btn">Sign In</button>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why Universal Life Certificate?</h2>
+            <p class="section-subtitle">A comprehensive, inclusive system designed for global education tracking</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon blue">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                            <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                        </svg>
+                    </div>
+                    <h3>Complete Life Tracking</h3>
+                    <p>From primary education to professional certifications, track your entire learning journey in one secure place</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon green">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                            <circle cx="12" cy="7" r="4"></circle>
+                        </svg>
+                    </div>
+                    <h3>Universal Life Passport</h3>
+                    <p>Unique global identity with QR-enabled verification, recognized across institutions worldwide</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon purple">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                        </svg>
+                    </div>
+                    <h3>Metamorphic Badges</h3>
+                    <p>Dynamic achievement badges that evolve with your skills, powered by AI-verified competencies</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon orange">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                        </svg>
+                    </div>
+                    <h3>Blockchain Security</h3>
+                    <p>Tamper-proof records using distributed ledger technology, ensuring lifetime authenticity</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon red">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="12" y1="18" x2="12" y2="12"></line>
+                            <line x1="9" y1="15" x2="15" y2="15"></line>
+                        </svg>
+                    </div>
+                    <h3>Offline Access</h3>
+                    <p>Download PDF certificates anytime, works without internet for rural and remote areas</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon cyan">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M12 6v6l4 2"></path>
+                        </svg>
+                    </div>
+                    <h3>Real-Time Updates</h3>
+                    <p>Automatic credential updates from institutions, employers, and certification bodies</p>
+                </div>
+            </div>
         </div>
-        
-        <div class="auth-footer">
-          <p>Don't have an account? <a href="#" class="auth-link" id="go-to-signup">Sign up</a></p>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-number">1</div>
+                    <div class="timeline-content">
+                        <h3>Sign Up with Aadhaar</h3>
+                        <p>Secure authentication using Aadhaar or DigiLocker for verified identity</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">2</div>
+                    <div class="timeline-content">
+                        <h3>Add Your Details</h3>
+                        <p>Fill educational background, skills, experiences, and achievements</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">3</div>
+                    <div class="timeline-content">
+                        <h3>Get Verified</h3>
+                        <p>Institutions verify your credentials through blockchain network</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">4</div>
+                    <div class="timeline-content">
+                        <h3>Download & Share</h3>
+                        <p>Access your ULC anytime, share with QR code, or download PDF</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>Ready to Create Your Universal Life Certificate?</h2>
+            <p>Join thousands of learners building their verified educational identity</p>
+            <button class="btn-hero" id="ctaBtn">Start Your Journey</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Universal Life Certificate</h4>
+                    <p>Part of ONSNC - Universal Inclusive Education Network Civilization</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">About ULC</a></li>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#verify">Verify Certificate</a></li>
+                        <li><a href="#institutions">For Institutions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#docs">Documentation</a></li>
+                        <li><a href="#api">API Access</a></li>
+                        <li><a href="#support">Support</a></li>
+                        <li><a href="#privacy">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <ul>
+                        <li><a href="https://onsnc.org">ONSNC.org</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                        <li><a href="#community">Community</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 ONSNC Universal Life Certificate. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Authentication Modal -->
+    <div id="authModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="auth-container">
+                <div class="auth-header">
+                    <h2 id="authTitle">Sign In to ULC</h2>
+                    <p>Secure authentication with Aadhaar or DigiLocker</p>
+                </div>
+                
+                <div class="auth-methods">
+                    <button class="auth-btn aadhaar" id="aadhaarAuth">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+                        </svg>
+                        Sign in with Aadhaar
+                    </button>
+                    
+                    <button class="auth-btn digilocker" id="digilockerAuth">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zM9 6c0-1.66 1.34-3 3-3s3 1.34 3 3v2H9V6zm9 14H6V10h12v10zm-6-3c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2z"/>
+                        </svg>
+                        Sign in with DigiLocker
+                    </button>
+                </div>
+
+                <div class="divider">
+                    <span>OR</span>
+                </div>
+
+                <form id="authForm" class="auth-form">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="your@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter password" required>
+                    </div>
+                    <button type="submit" class="btn-primary btn-block">Continue</button>
+                </form>
+
+                <p class="auth-switch">
+                    <span id="switchText">Don't have an account?</span>
+                    <a href="#" id="switchMode">Sign Up</a>
+                </p>
+            </div>
+        </div>
     </div>
-    
-    <!-- Signup Page -->
-    <div class="auth-container hidden" id="signup-page">
-      <div class="auth-card">
-        <div class="auth-header">
-          <div class="auth-logo">ULC</div>
-          <h1 class="auth-title">Create Account</h1>
-          <p class="auth-subtitle">Sign up for your Universal Life Certificate account</p>
-        </div>
-        
-        <button class="btn btn-google" id="google-signup">
-          <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
-            <path fill="#FFC107" d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"/>
-            <path fill="#FF3D00" d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"/>
-            <path fill="#4CAF50" d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"/>
-            <path fill="#1976D2" d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"/>
-          </svg>
-          Continue with Google
-        </button>
-        
-        <div class="divider">
-          <span class="divider-text">or</span>
-        </div>
-        
-        <div class="auth-form">
-          <div class="form-group">
-            <label class="form-label" for="signup-name">Full Name</label>
-            <input class="form-input" id="signup-name" type="text" placeholder="Enter your full name" />
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label" for="signup-email">Email Address</label>
-            <input class="form-input" id="signup-email" type="email" placeholder="Enter your email address" />
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label" for="signup-mobile">Mobile Number</label>
-            <input class="form-input" id="signup-mobile" type="tel" placeholder="Enter your mobile number" />
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label" for="signup-password">Password</label>
-            <input class="form-input" id="signup-password" type="password" placeholder="Create a password" />
-          </div>
-          
-          <div class="form-group">
-            <label class="form-label" for="signup-confirm-password">Confirm Password</label>
-            <input class="form-input" id="signup-confirm-password" type="password" placeholder="Confirm your password" />
-          </div>
-          
-          <button class="btn btn-primary" id="signup-btn">Create Account</button>
-        </div>
-        
-        <div class="auth-footer">
-          <p>Already have an account? <a href="#" class="auth-link" id="go-to-login">Sign in</a></p>
-        </div>
-      </div>
-    </div>
-    
-    <!-- OTP Verification Page -->
-    <div class="auth-container hidden" id="otp-page">
-      <div class="auth-card">
-        <div class="auth-header">
-          <div class="auth-logo">ULC</div>
-          <h1 class="auth-title">Verify Mobile</h1>
-          <p class="auth-subtitle">Enter the OTP sent to your mobile number</p>
-        </div>
-        
-        <div class="auth-form">
-          <div class="form-group">
-            <label class="form-label">One-Time Password</label>
-            <div class="otp-container">
-              <input class="otp-input" type="text" maxlength="1" />
-              <input class="otp-input" type="text" maxlength="1" />
-              <input class="otp-input" type="text" maxlength="1" />
-              <input class="otp-input" type="text" maxlength="1" />
-              <input class="otp-input" type="text" maxlength="1" />
-              <input class="otp-input" type="text" maxlength="1" />
-            </div>
-          </div>
-          
-          <button class="btn btn-primary" id="verify-otp-btn">Verify OTP</button>
-          
-          <div class="auth-footer">
-            <p>Didn't receive the code? <a href="#" class="auth-link" id="resend-otp">Resend OTP</a></p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- Main Dashboard (Hidden initially) -->
-  <div id="dashboard-container" class="hidden">
-    <div class="container">
-      <header>
-        <div class="logo-container">
-          <div class="logo">ULC</div>
-          <div class="header-text">
-            <h1>Universal Life Certificate Dashboard</h1>
-            <p>ONSNC — Nexus Education Grid | Advanced certificate management</p>
-          </div>
-        </div>
-        <div class="user-nav">
-          <div class="user-avatar" id="user-avatar">SR</div>
-          <button class="logout-btn" id="logout-btn">Logout</button>
-        </div>
-      </header>
-
-      <div class="nav-tabs">
-        <button class="nav-tab active" data-tab="dashboard">Dashboard</button>
-        <button class="nav-tab" data-tab="certificates">My Certificates</button>
-        <button class="nav-tab" data-tab="create">Create New</button>
-        <button class="nav-tab" data-tab="analytics">Analytics</button>
-      </div>
-
-      <!-- Dashboard Tab -->
-      <div class="tab-content active" id="dashboard">
-        <div class="stats-grid">
-          <div class="stat-card">
-            <p class="stat-value">12</p>
-            <p class="stat-label">Total Certificates</p>
-            <div class="stat-trend trend-up">
-              <span>+2 this month</span>
-            </div>
-          </div>
-          <div class="stat-card">
-            <p class="stat-value">8</p>
-            <p class="stat-label">Active Certificates</p>
-            <div class="stat-trend trend-up">
-              <span>+1 this week</span>
-            </div>
-          </div>
-          <div class="stat-card">
-            <p class="stat-value">4</p>
-            <p class="stat-label">Pending Verifications</p>
-            <div class="stat-trend trend-down">
-              <span>-1 today</span>
-            </div>
-          </div>
-          <div class="stat-card">
-            <p class="stat-value">96%</p>
-            <p class="stat-label">Completion Rate</p>
-            <div class="stat-trend trend-up">
-              <span>+2% this month</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="dashboard-grid">
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Recent Activity</h3>
-              <div class="card-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                  <polyline points="14 2 14 8 20 8"></polyline>
-                  <line x1="16" y1="13" x2="8" y2="13"></line>
-                  <line x1="16" y1="17" x2="8" y2="17"></line>
-                  <polyline points="10 9 9 9 8 9"></polyline>
-                </svg>
-              </div>
-            </div>
-            <div class="activity-list">
-              <div class="activity-item">
-                <p><strong>Education Certificate</strong> was verified</p>
-                <span class="activity-time">2 hours ago</span>
-              </div>
-              <div class="activity-item">
-                <p><strong>Shivanta Ronghang</strong> updated skills</p>
-                <span class="activity-time">5 hours ago</span>
-              </div>
-              <div class="activity-item">
-                <p>New <strong>Work Experience</strong> added</p>
-                <span class="activity-time">Yesterday</span>
-              </div>
-              <div class="activity-item">
-                <p><strong>Professional Development</strong> certificate issued</p>
-                <span class="activity-time">2 days ago</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Skills Distribution</h3>
-              <div class="card-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                  <polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline>
-                  <polyline points="7.5 19.79 7.5 14.6 3 12"></polyline>
-                  <polyline points="21 12 16.5 14.6 16.5 19.79"></polyline>
-                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                  <line x1="12" y1="22.08" x2="12" y2="12"></line>
-                </svg>
-              </div>
-            </div>
-            <div class="chart-container">
-              <canvas id="skillsChart"></canvas>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Certificate Status</h3>
-              <div class="card-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <line x1="12" y1="8" x2="12" y2="16"></line>
-                  <line x1="8" y1="12" x2="16" y2="12"></line>
-                </svg>
-              </div>
-            </div>
-            <div class="chart-container">
-              <canvas id="statusChart"></canvas>
-            </div>
-          </div>
-
-          <div class="certificate-preview">
-            <div class="certificate-header">
-              <h2 class="certificate-title">Universal Life Certificate</h2>
-              <div class="certificate-id">ULID: ULC-2023-SR-001</div>
-            </div>
-
-            <div class="certificate-body">
-              <div class="profile-section">
-                <div class="profile-avatar">SR</div>
-                <div class="profile-info">
-                  <h3>Shivanta Ronghang</h3>
-                  <p class="profile-bio">Software Developer & Educator</p>
-                  <div class="badges-container">
-                    <div class="badge">JavaScript</div>
-                    <div class="badge">Python</div>
-                    <div class="badge">React</div>
-                    <div class="badge">Node.js</div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="qr-section">
-                <div class="meta-badge">
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2l3 6 6 1-4.5 4 1 6L12 17l-5.5 2 1-6L3 9l6-1 3-6z" fill="white"/>
-                  </svg>
-                </div>
-                <div class="qr-code" id="dashboard-qr"></div>
-                <p class="small">Scan to verify</p>
-              </div>
-            </div>
-
-            <div class="certificate-details">
-              <div class="detail-section">
-                <h4>Education & Credentials</h4>
-                <div class="detail-content">
-                  <div class="education-item">
-                    <strong>Bachelor of Technology</strong> - Assam Engineering College (2015-2019)
-                  </div>
-                  <div class="education-item">
-                    <strong>Web Development Certification</strong> - Online Platform (2020)
-                  </div>
-                </div>
-              </div>
-
-              <div class="detail-section">
-                <h4>Professional Experience</h4>
-                <div class="detail-content">
-                  <p>3+ years of experience in full-stack web development, with expertise in JavaScript, React, and Node.js. Worked on multiple projects ranging from e-commerce platforms to educational tools.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="certificate-footer">
-              <div class="certificate-status">
-                <span>Status:</span>
-                <span class="status-badge status-active">Active</span>
-                <span>Issued: 15 Oct 2023</span>
-              </div>
-              <div class="certificate-actions">
-                <button class="btn btn-primary">View Details</button>
-                <button class="btn btn-secondary" id="dashboard-download-pdf">Download PDF</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Certificates Tab -->
-      <div class="tab-content" id="certificates">
-        <h2>My Certificates</h2>
-        <p>Manage and view all your Universal Life Certificates</p>
-
-        <div class="certificates-grid" id="certificates-container">
-          <!-- Certificates will be dynamically added here -->
-        </div>
-      </div>
-
-      <!-- Create Tab -->
-      <div class="tab-content" id="create">
-        <div class="dashboard-grid">
-          <div class="form-card">
-            <h2 class="form-title">Create New Certificate</h2>
-            <p>Fill in the details below to generate a new Universal Life Certificate</p>
-
-            <div class="form-group">
-              <label class="form-label" for="fullname">Full Name</label>
-              <input class="form-input" id="fullname" placeholder="e.g. Shivanta Ronghang" />
-            </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label class="form-label" for="dob">Date of Birth</label>
-                <input class="form-input" id="dob" type="date" />
-              </div>
-              <div class="form-group">
-                <label class="form-label" for="gender">Gender</label>
-                <select class="form-select" id="gender">
-                  <option>Male</option>
-                  <option>Female</option>
-                  <option>Other</option>
-                  <option>Prefer not to say</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label" for="bio">Professional Bio</label>
-              <textarea class="form-textarea" id="bio" rows="3" placeholder="Brief professional summary"></textarea>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">Education</label>
-              <div id="education-list"></div>
-              <button id="add-edu" class="btn btn-secondary" style="margin-top:8px">+ Add Education</button>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label" for="skills">Skills</label>
-              <input class="form-input" id="skills" placeholder="e.g. JavaScript, Python, React, Node.js" />
-            </div>
-
-            <div class="form-group">
-              <label class="form-label" for="experience">Professional Experience</label>
-              <textarea class="form-textarea" id="experience" rows="3" placeholder="Work experience, projects, achievements"></textarea>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label" for="photo">Profile Photo</label>
-              <input class="form-input" id="photo" type="file" accept="image/*" />
-            </div>
-
-            <div class="form-group">
-              <button id="generate" class="btn btn-primary">Generate Certificate</button>
-              <button id="download-json" class="btn btn-secondary">Export as JSON</button>
-            </div>
-          </div>
-
-          <div class="certificate-preview">
-            <div class="certificate-header">
-              <h2 class="certificate-title">Certificate Preview</h2>
-              <div class="certificate-id" id="preview-ulid">ULID: —</div>
-            </div>
-
-            <div class="certificate-body">
-              <div class="profile-section">
-                <div class="profile-avatar" id="preview-photo">SR</div>
-                <div class="profile-info">
-                  <h3 id="preview-name">Full Name</h3>
-                  <p class="profile-bio" id="preview-bio">Professional Bio</p>
-                  <div class="badges-container" id="preview-badges">
-                    <div class="badge">Sample Skill</div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="qr-section">
-                <div class="meta-badge" id="preview-metabadge">
-                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2l3 6 6 1-4.5 4 1 6L12 17l-5.5 2 1-6L3 9l6-1 3-6z" fill="white"/>
-                  </svg>
-                </div>
-                <div class="qr-code" id="preview-qr"></div>
-                <p class="small">Scan to verify</p>
-              </div>
-            </div>
-
-            <div class="certificate-details">
-              <div class="detail-section">
-                <h4>Education & Credentials</h4>
-                <div class="detail-content" id="preview-education">
-                  <div class="education-item">No education added yet</div>
-                </div>
-              </div>
-
-              <div class="detail-section">
-                <h4>Professional Experience</h4>
-                <div class="detail-content" id="preview-experience">
-                  <p>No experience added yet</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="certificate-footer">
-              <div class="certificate-status">
-                <span>Status:</span>
-                <span class="status-badge status-active">Draft</span>
-              </div>
-              <div class="certificate-actions">
-                <button id="download-pdf" class="btn btn-primary" disabled>Download PDF</button>
-                <button id="save-certificate" class="btn btn-success" disabled>Save Certificate</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Analytics Tab -->
-      <div class="tab-content" id="analytics">
-        <h2>Certificate Analytics</h2>
-        <p>Insights and statistics about your certificates</p>
-
-        <div class="dashboard-grid">
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Certificate Growth</h3>
-            </div>
-            <div class="chart-container">
-              <canvas id="growthChart"></canvas>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Skills Development</h3>
-            </div>
-            <div class="chart-container">
-              <canvas id="developmentChart"></canvas>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Verification Status</h3>
-            </div>
-            <div class="chart-container">
-              <canvas id="verificationChart"></canvas>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Verification Modal -->
-  <div class="modal-overlay hidden" id="verification-modal">
-    <div class="modal">
-      <div class="modal-header">
-        <h3 class="modal-title">Verify Your Data</h3>
-        <button class="modal-close" id="close-verification-modal">&times;</button>
-      </div>
-      
-      <p>Please complete the following verification steps before downloading your certificate.</p>
-      
-      <div class="verification-steps">
-        <div class="verification-step">
-          <div class="step-icon" id="step-1-icon">1</div>
-          <div class="step-content">
-            <h4 class="step-title">Mobile Verification</h4>
-            <p class="step-description">Verify your mobile number to ensure certificate authenticity</p>
-            <button class="btn btn-primary" id="verify-mobile-btn" style="margin-top: 8px; width: auto;">Verify Mobile</button>
-          </div>
-        </div>
-        
-        <div class="verification-step">
-          <div class="step-icon" id="step-2-icon">2</div>
-          <div class="step-content">
-            <h4 class="step-title">Data Review</h4>
-            <p class="step-description">Review and confirm all certificate information is accurate</p>
-            <button class="btn btn-primary" id="review-data-btn" style="margin-top: 8px; width: auto;" disabled>Review Data</button>
-          </div>
-        </div>
-        
-        <div class="verification-step">
-          <div class="step-icon" id="step-3-icon">3</div>
-          <div class="step-content">
-            <h4 class="step-title">Download Certificate</h4>
-            <p class="step-description">Once verified, download your official certificate</p>
-            <button class="btn btn-success" id="final-download-btn" style="margin-top: 8px; width: auto;" disabled>Download PDF</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script src="ucl-certificate.js"></script>
+    <script src="ucl-certificate.js"></script>
 </body>
 </html>
