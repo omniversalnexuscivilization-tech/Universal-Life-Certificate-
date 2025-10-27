@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your ULC | Universal Life Certificate</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="ulc-dashboard.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <div class="logo-icon">ULC</div>
+                <div class="brand-text">
+                    <h1>Universal Life Certificate</h1>
+                    <p>Certificate Creation Dashboard</p>
+                </div>
+            </div>
+            <div class="nav-actions">
+                <button class="btn-secondary" id="viewCertBtn">My Certificates</button>
+                <button class="btn-secondary" id="logoutBtn">Logout</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="dashboard-container">
+        <div class="container">
+            <!-- Progress Steps -->
+            <div class="progress-steps">
+                <div class="step active" data-step="1">
+                    <div class="step-number">1</div>
+                    <div class="step-label">Personal Info</div>
+                </div>
+                <div class="step-line"></div>
+                <div class="step" data-step="2">
+                    <div class="step-number">2</div>
+                    <div class="step-label">Education</div>
+                </div>
+                <div class="step-line"></div>
+                <div class="step" data-step="3">
+                    <div class="step-number">3</div>
+                    <div class="step-label">Skills & Experience</div>
+                </div>
+                <div class="step-line"></div>
+                <div class="step" data-step="4">
+                    <div class="step-number">4</div>
+                    <div class="step-label">Preview & Generate</div>
+                </div>
+            </div>
+
+            <!-- Form and Preview Grid -->
+            <div class="dashboard-grid">
+                <!-- Form Section -->
+                <div class="form-section">
+                    <!-- Step 1: Personal Information -->
+                    <div class="form-step active" id="step1">
+                        <h2 class="step-title">Personal Information</h2>
+                        <p class="step-description">Enter your basic personal details</p>
+
+                        <div class="form-grid">
+                            <div class="form-group full-width">
+                                <label for="fullName">Full Name *</label>
+                                <input type="text" id="fullName" placeholder="Enter your full name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dob">Date of Birth *</label>
+                                <input type="date" id="dob" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="gender">Gender *</label>
+                                <select id="gender" required>
+                                    <option value="">Select Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                    <option value="prefer-not-to-say">Prefer not to say</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" placeholder="your@email.com" required>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" placeholder="+91 XXXXX XXXXX" required>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="address">Address</label>
+                                <textarea id="address" rows="3" placeholder="Complete address"></textarea>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="bio">Short Bio</label>
+                                <textarea id="bio" rows="4" placeholder="Write a brief introduction about yourself (max 200 words)"></textarea>
+                            </div>
+
+                            <div class="form-group full-width">
+                                <label for="photo">Profile Photo (Optional)</label>
+                                <input type="file" id="photo" accept="image/*">
+                                <div id="photoPreview" class="photo-preview"></div>
+                            </div>
+                        </div>
+
+                        <div class="form-actions">
+                            <button class="btn-primary" onclick="nextStep(2)">Next: Education →</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Education -->
+                    <div class="form-step" id="step2">
+                        <h2 class="step-title">Education & Qualifications</h2>
+                        <p class="step-description">Add your educational background</p>
+
+                        <div id="educationList" class="dynamic-list"></div>
+                        
+                        <button class="btn-secondary add-btn" onclick="addEducation()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                            Add Education
+                        </button>
+
+                        <div class="form-actions">
+                            <button class="btn-secondary" onclick="prevStep(1)">← Previous</button>
+                            <button class="btn-primary" onclick="nextStep(3)">Next: Skills →</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 3: Skills & Experience -->
+                    <div class="form-step" id="step3">
+                        <h2 class="step-title">Skills & Experience</h2>
+                        <p class="step-description">Add your skills, certifications, and work experience</p>
+
+                        <div class="form-group full-width">
+                            <label for="skills">Skills (comma separated) *</label>
+                            <textarea id="skills" rows="3" placeholder="e.g., Python, Data Analysis, Teaching, Agriculture, Communication"></textarea>
+                            <small>Add skills that you have acquired through education, training, or experience</small>
+                        </div>
+
+                        <h3 style="margin-top: 24px;">Certifications</h3>
+                        <div id="certificationList" class="dynamic-list"></div>
+                        <button class="btn-secondary add-btn" onclick="addCertification()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                            Add Certification
+                        </button>
+
+                        <h3 style="margin-top: 24px;">Work Experience</h3>
+                        <div id="experienceList" class="dynamic-list"></div>
+                        <button class="btn-secondary add-btn" onclick="addExperience()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="12" y1="5" x2="12" y2="19"></line>
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                            </svg>
+                            Add Experience
+                        </button>
+
+                        <div class="form-actions">
+                            <button class="btn-secondary" onclick="prevStep(2)">← Previous</button>
+                            <button class="btn-primary" onclick="nextStep(4)">Next: Preview →</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 4: Preview & Generate -->
+                    <div class="form-step" id="step4">
+                        <h2 class="step-title">Review & Generate Certificate</h2>
+                        <p class="step-description">Review your information and generate your Universal Life Certificate</p>
+
+                        <div class="certificate-actions">
+                            <button class="btn-hero" id="generateCertBtn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                                Generate Universal Life Certificate
+                            </button>
+                            
+                            <button class="btn-secondary" id="downloadPDFBtn" disabled>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                    <polyline points="14 2 14 8 20 8"></polyline>
+                                </svg>
+                                Download PDF
+                            </button>
+
+                            <button class="btn-secondary" id="downloadJSONBtn" disabled>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path>
+                                    <polyline points="13 2 13 9 20 9"></polyline>
+                                </svg>
+                                Export JSON
+                            </button>
+
+                            <button class="btn-secondary" id="printCertBtn" disabled>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                                    <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                                    <rect x="6" y="14" width="12" height="8"></rect>
+                                </svg>
+                                Print
+                            </button>
+                        </div>
+
+                        <div class="form-actions">
+                            <button class="btn-secondary" onclick="prevStep(3)">← Previous</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preview Section -->
+                <div class="preview-section">
+                    <div class="preview-card" id="certificatePreview">
+                        <div class="cert-header">
+                            <div class="cert-logo-section">
+                                <div class="cert-logo">ULC</div>
+                                <div>
+                                    <div class="cert-title">Universal Life Certificate</div>
+                                    <div class="cert-subtitle">ONSNC - UIENC</div>
+                                </div>
+                            </div>
+                            <div class="cert-id-section">
+                                <div class="cert-label">Certificate ID</div>
+                                <div class="cert-id" id="previewULID">—</div>
+                                <div class="cert-label" style="margin-top: 8px;">Life Passport ID</div>
+                                <div class="cert-passport-id" id="previewPassportID">—</div>
+                            </div>
+                        </div>
+
+                        <div class="cert-body">
+                            <div class="cert-profile">
+                                <div class="cert-avatar" id="previewAvatar">
+                                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                        <circle cx="12" cy="7" r="4"></circle>
+                                    </svg>
+                                </div>
+                                <div class="cert-info">
+                                    <h3 id="previewName">Your Name</h3>
+                                    <p id="previewDOB">Date of Birth</p>
+                                    <p id="previewBio" class="cert-bio">Short bio will appear here</p>
+                                </div>
+                            </div>
+
+                            <div class="metamorphic-badge" id="metaBadge">
+                                <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                                </svg>
+                                <div class="badge-pulse"></div>
+                            </div>
+                        </div>
+
+                        <div class="cert-skills" id="previewSkills">
+                            <div class="skill-badge">Sample Skill</div>
+                        </div>
+
+                        <div class="cert-section">
+                            <h4>Education</h4>
+                            <div id="previewEducation" class="cert-list">
+                                <p class="empty-state">No education added yet</p>
+                            </div>
+                        </div>
+
+                        <div class="cert-section">
+                            <h4>Experience</h4>
+                            <div id="previewExperience" class="cert-list">
+                                <p class="empty-state">No experience added yet</p>
+                            </div>
+                        </div>
+
+                        <div class="cert-footer">
+                            <div class="qr-section">
+                                <div id="qrCode" class="qr-code"></div>
+                                <small>Scan to verify</small>
+                            </div>
+                            <div class="blockchain-info">
+                                <div class="blockchain-badge">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                                    </svg>
+                                    Blockchain Secured
+                                </div>
+                                <small id="previewTimestamp">Generated: —</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="ucl-dashboard.js"></script>
+</body>
+</html>
